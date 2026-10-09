@@ -26,6 +26,15 @@ jobs:
       - name: Build web application
         run: ./gradlew --no-daemon --max-workers=2 :composeApp:wasmJsBrowserProductionWebpack
 
+      - name: Locate generated web files
+        run: |
+          echo "=== index.html ==="
+          find composeApp/build -type f -name 'index.html'
+          echo "=== JavaScript ==="
+          find composeApp/build -type f -name 'composeApp.js'
+          echo "=== WASM ==="
+          find composeApp/build -type f -name '*.wasm'
+
       - name: Upload website files
         uses: actions/upload-artifact@v4
         with:
