@@ -35,9 +35,16 @@ jobs:
           echo "=== WASM ==="
           find composeApp/build -type f -name '*.wasm'
 
+      - name: Prepare website files
+        run: |
+          mkdir -p website-dist
+          cp composeApp/build/processedResources/wasmJs/main/index.html website-dist/
+          cp composeApp/build/processedResources/wasmJs/main/styles.css website-dist/
+          cp composeApp/build/kotlin-webpack/wasmJs/productionExecutable/* website-dist/
+
       - name: Upload website files
         uses: actions/upload-artifact@v4
         with:
           name: recipes-website
-          path: composeApp/build/kotlin-webpack/wasmJs/productionExecutable/
-          if-no-files-found: warn
+          path: website-dist/
+          if-no-files-found: error
