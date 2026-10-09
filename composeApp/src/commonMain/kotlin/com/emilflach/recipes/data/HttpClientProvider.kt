@@ -12,7 +12,7 @@ import kotlinx.serialization.json.Json
 expect fun createHttpClientEngine(): HttpClientEngineFactory<*>
 
 object HttpClientProvider {
-    const val BASE_URL = "https://mealie.emilflach.com/api"
+    const val BASE_URL = "https://recipes.tobi-jas.nl/api"
 
     // Common configuration for all platforms
     fun <T : HttpClientEngineConfig> configureClient(config: HttpClientConfig<T>) {
